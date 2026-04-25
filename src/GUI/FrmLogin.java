@@ -4,6 +4,10 @@
  */
 package GUI;
 
+import Modelos.Usuario;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Dell
@@ -11,7 +15,10 @@ package GUI;
 public class FrmLogin extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmLogin.class.getName());
-
+    
+    private List<Usuario> usuario = new ArrayList<>();
+    private Object usuarioLogin;
+    
     /**
      * Creates new form Login
      */
