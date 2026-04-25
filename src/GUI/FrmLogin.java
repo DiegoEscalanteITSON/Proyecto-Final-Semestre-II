@@ -16,14 +16,22 @@ public class FrmLogin extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmLogin.class.getName());
     
-    private List<Usuario> usuario = new ArrayList<>();
+    private List<Usuario> usuarios = new ArrayList<>();
     private Object usuarioLogin;
+    private Object usuario;
     
     /**
      * Creates new form Login
      */
     public FrmLogin() {
         initComponents();
+        setLocationRelativeTo(null);
+        setTitle("Inicio de Sesion");
+        setResizable(false);
+        
+        Usuario usuario1 = new Usuario ("123456@gmail.com", "admin123","123","456","Administrador");
+        usuarios.add(usuario1);
+        
     }
 
     /**

@@ -15,6 +15,10 @@ public class Usuario {
     private String correo;
     private String password;
 
+    public Usuario(String gmailcom, String admin123, String string, String string0, String administrador) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     /**
      * @return the nombre
      */
