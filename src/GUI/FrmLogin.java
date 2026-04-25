@@ -8,14 +8,14 @@ package GUI;
  *
  * @author Dell
  */
-public class Login extends javax.swing.JFrame {
+public class FrmLogin extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmLogin.class.getName());
 
     /**
      * Creates new form Login
      */
-    public Login() {
+    public FrmLogin() {
         initComponents();
     }
 
@@ -176,7 +176,7 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Login().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new FrmLogin().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
