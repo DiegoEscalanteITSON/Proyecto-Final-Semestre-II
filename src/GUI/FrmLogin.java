@@ -169,7 +169,7 @@ public class FrmLogin extends javax.swing.JFrame {
         }
     }
 
-    // 🔹 3. Resultado final
+    //  3. Resultado final
     if (!encontrado) {
         System.out.println("Usuario o contraseña incorrecto");
     }
