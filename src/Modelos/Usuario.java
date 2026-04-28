@@ -81,4 +81,8 @@ public class Usuario {
         this.correo = correo;
         this.password = password;
     }
+
+    public String getRol() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
