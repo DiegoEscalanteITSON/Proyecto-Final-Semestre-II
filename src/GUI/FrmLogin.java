@@ -69,6 +69,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel2.setText("E-Mail");
 
         tfEmail.setToolTipText("");
+        tfEmail.addActionListener(this::tfEmailActionPerformed);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Contraseña");
@@ -175,6 +176,10 @@ public class FrmLogin extends javax.swing.JFrame {
         System.out.println("Usuario o contraseña incorrecto");
     }
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void tfEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfEmailActionPerformed
 
     
     /**
