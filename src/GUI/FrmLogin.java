@@ -37,6 +37,7 @@ public class FrmLogin extends javax.swing.JFrame {
          usuarios.add(usuario1);
         
     }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
