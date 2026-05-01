@@ -4,20 +4,45 @@
  */
 package GUI;
 
+import Modelos.Usuario;
+import javax.swing.JOptionPane;
+
+    private Object txtCantidad;
+    private Object txtDestino;
 /**
  *
  * @author Dell
  */
+    
+ 
 public class FrmBanco extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmBanco.class.getName());
+    private Usuario usuario;
+    private javax.swing.JTextField txtCantidad = new javax.swing.JTextField();
+    private javax.swing.JTextField txtDestino = new javax.swing.JTextField();
 
-    /**
-     * Creates new form Banco
-     */
-    public FrmBanco() {
+    public FrmBanco(Usuario usuario) {
         initComponents();
+        this.usuario = usuario;
+
+        setLocationRelativeTo(null);
+        setTitle("Banco");
+
+        cargarDatosUsuario();;
+}
+    
+    // Metodo para cargar datos
+    public void cargarDatosUsuario() {
+        lblNombre.setText(usuario.getRol()); 
+        lblCorreo.setText(usuario.getCorreo());
+        
     }
+    //Actualizar Saldo
+        public void actualizarSaldo(double saldo) {
+        lblSaldo.setText("$ " + saldo);
+        } 
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,27 +54,28 @@ public class FrmBanco extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        lblNumeroCuenta = new javax.swing.JLabel();
         lblSaldo = new javax.swing.JLabel();
         lblDeuda = new javax.swing.JLabel();
         btnRetirar = new javax.swing.JButton();
         btnTranferir = new javax.swing.JButton();
         btnPrestamo = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
+        lblCorreo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(46, 82, 90));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Diego Alonso Escalante Gómez");
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombre.setText("Diego Alonso Escalante Gómez");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("0101010101");
+        lblNumeroCuenta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblNumeroCuenta.setForeground(new java.awt.Color(255, 255, 255));
+        lblNumeroCuenta.setText("0101010101");
 
         lblSaldo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblSaldo.setForeground(new java.awt.Color(255, 255, 255));
@@ -62,17 +88,24 @@ public class FrmBanco extends javax.swing.JFrame {
         btnRetirar.setBackground(new java.awt.Color(153, 153, 153));
         btnRetirar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnRetirar.setText("Retirar");
+        btnRetirar.addActionListener(this::btnRetirarActionPerformed);
 
         btnTranferir.setBackground(new java.awt.Color(153, 153, 153));
         btnTranferir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnTranferir.setText("Transferir");
+        btnTranferir.addActionListener(this::btnTranferirActionPerformed);
 
         btnPrestamo.setBackground(new java.awt.Color(153, 153, 153));
         btnPrestamo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnPrestamo.setText("Prestamo");
+        btnPrestamo.addActionListener(this::btnPrestamoActionPerformed);
 
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCerrarSesion.setText("Cerrar Sesión");
+        btnCerrarSesion.addActionListener(this::btnCerrarSesionActionPerformed);
+
+        lblCorreo.setForeground(new java.awt.Color(255, 255, 255));
+        lblCorreo.setText("123456@gmail.com");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -83,46 +116,52 @@ public class FrmBanco extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblSaldo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                         .addComponent(lblDeuda)
                         .addGap(97, 97, 97))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnRetirar)
-                        .addGap(43, 43, 43)
-                        .addComponent(btnTranferir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                        .addComponent(btnPrestamo)
-                        .addGap(15, 15, 15))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(115, 115, 115)
-                                .addComponent(btnCerrarSesion))
-                            .addComponent(jLabel1)
+                            .addComponent(lblNombre)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(jLabel2)))
+                                .addComponent(lblNumeroCuenta)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(btnRetirar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCerrarSesion)
+                    .addComponent(btnTranferir))
+                .addGap(44, 44, 44)
+                .addComponent(btnPrestamo)
+                .addGap(19, 19, 19))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(lblCorreo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jLabel1)
+                .addComponent(lblNombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(lblNumeroCuenta)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSaldo)
                     .addComponent(lblDeuda))
-                .addGap(84, 84, 84)
+                .addGap(55, 55, 55)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRetirar)
                     .addComponent(btnTranferir)
                     .addComponent(btnPrestamo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
                 .addComponent(btnCerrarSesion)
-                .addGap(21, 21, 21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(lblCorreo)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,40 +178,54 @@ public class FrmBanco extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    private void btnRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarActionPerformed
+try {
+            double cantidad = Double.parseDouble(txtCantidad.getText());
+            if (cantidad <= 0) {
+                JOptionPane.showMessageDialog(this, "Cantidad inválida");
+                return;
             }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Retiro simulado: $" + cantidad);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ingresa un número válido");
         }
-        //</editor-fold>
+    }//GEN-LAST:event_btnRetirarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmBanco().setVisible(true));
-    }
+    private void btnTranferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTranferirActionPerformed
+       try {
+            double cantidad = Double.parseDouble(txtCantidad.getText());
+            String destino = txtDestino.getText();
+            JOptionPane.showMessageDialog(this, "Transferencia a " + destino + " por $" + cantidad);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error en datos");
+        }
+    }//GEN-LAST:event_btnTranferirActionPerformed
+
+    private void btnPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrestamoActionPerformed
+       try {
+            double cantidad = Double.parseDouble(txtCantidad.getText());
+            JOptionPane.showMessageDialog(this, "Préstamo aprobado por $" + cantidad);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error en datos");
+        }
+    }//GEN-LAST:event_btnPrestamoActionPerformed
+
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+    this.dispose();
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnPrestamo;
     private javax.swing.JButton btnRetirar;
     private javax.swing.JButton btnTranferir;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblDeuda;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNumeroCuenta;
     private javax.swing.JLabel lblSaldo;
     // End of variables declaration//GEN-END:variables
+
 }
